@@ -37,6 +37,7 @@
 	<script src="ShaderPass.js"></script>
 	<script src="GlitchPass.js"></script>
 	<script type="text/javascript" src="dat.gui.js"></script>
+	<script src='Tone.min.js'></script>
 
 
 	<script type="x-shader/x-vertex" id="vertexshader">
@@ -157,7 +158,6 @@
 			geometry.addAttribute('customColor', new THREE.BufferAttribute(colors, 3));
 			geometry.addAttribute('displacement', new THREE.BufferAttribute(displacement, 3));
 
-
 			//SHADER
 			uniforms = {
 
@@ -181,6 +181,14 @@
 			mesh.rotation.z = Math.PI / 5;
 
 			scene.add(mesh);
+
+			//Tone
+			var synth;
+
+			document.addEventListener('click', function() {
+			  synth = new Tone.Synth().toMaster();
+			  synth.triggerAttackRelease('C2', '10n');
+			})
 
 
 			//RENDER
